@@ -1,0 +1,20 @@
+{
+  "name": "meme-canvas",
+  "version": "1.0.0",
+  "description": "Simple meme generator using Canvas",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rrriki/meme-canvas.git"
+  },
+  "author": "Ricardo R. Rincón",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "multer": "^1.3.0"
+  }
+}

@@ -1,0 +1,46 @@
+h1{ 
+    font-family: 'Helvetica Neue', sans-serif;
+    letter-spacing: 5px;
+    text-align: center; 
+    color: #333333;
+
+}
+
+p {
+    font-family: 'Open Sans', serif;
+    font-weight: bold;
+    text-align: center;
+    color: red;
+}
+
+canvas {
+    border: 1px solid black;
+    margin: 16px;
+}
+
+.input {
+    float: left;
+    margin: 16px;
+    width: 100%;
+}
+.container {
+    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.canvas {
+    width: 90%;
+    text-align: center;
+    border: 3px solid #333333;
+}
+
+.control {
+    position: relative;
+    flex-grow: 1;
+    text-align: center;
+    margin-left: 16px;
+    padding: 16px;
+    border: 3px solid #333333;
+}
+

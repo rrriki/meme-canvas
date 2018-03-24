@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="js/index.js"></script>
+    <title>MEME Generator</title>
+</head>
+
+<body>
+
+    <h1>MEME MAKER</h1>
+
+    <div class="container">
+
+        <div class="canvas">
+            <canvas id="canvas" width="500" height="500"></canvas>
+        </div>
+        <div class="control">
+            <p>1. Choose an image:</p>
+            <form id="form" enctype="multipart/form-data">
+                <input id="file" type="file" name="file">
+                <input id="submit" type="submit" value="GO">
+            </form>
+            <p>2. Say something funny:</p>
+            <div class="input">
+                <label for="top">&#9650;</label>
+                <input id="top" type="text" placeholder="Top line">
+            </div>
+
+            <div class="input">
+                <label for="bottom"> &#9660;</label>
+                <input id="bottom" type="text" placeholder="Bottom line">
+            </div>
+            <p>3. Download your work of art:</p>
+            <a id="download" href="">DOWNLOAD</a>
+        </div>
+    </div>
+</body>
+
+</html>
