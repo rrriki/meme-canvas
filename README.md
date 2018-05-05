@@ -1,9 +1,11 @@
 # Meme Maker
 A simple meme generator made for fun, using canvas and Node.js for the backend.
 
+ ![memes](https://www.kotzendes-einhorn.de/blog/wp-content/uploads/2016/11/meme.jpeg)
+
 ## Usage
 Clone or download the repo.
-Then start the server-side:
+Then install and start the project using NPM:
 ```sh
 $ cd meme-maker
 $ npm install
@@ -14,11 +16,7 @@ Navigate to the page, upload your image and write some funny lines.
 ## Contributing
 Want to contribute? Great!
 
-Ideas and suggestions are always welcome. Contact me through [REVEWARE] or make a pull request on [GitHub]
+Ideas and suggestions are always welcome. Contact me through [REVEWARE](http://reveware.com) or make a pull request on [GitHub](https://github.com/rrriki/meme-maker)
 
 ## License
 - MIT
-
-
-   [github]: <https://github.com/rrriki/meme-maker>
-   [reveware]: <http://reveware.com>

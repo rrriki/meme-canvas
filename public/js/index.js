@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var topInput = document.getElementById('top');
     topInput.oninput = textWatcher;
     var bottomInput = document.getElementById('bottom');
-    bottomInput.oninput = textWatcher;
+    bottomInput.oninput = textWatcher;  
 
     var form = document.getElementById('form');
     form.addEventListener('submit', function (event) {
@@ -41,6 +41,21 @@ document.addEventListener('DOMContentLoaded', function () {
     function drawImage() {
         console.log('Image loaded');
         context.drawImage(image, 0, 0, canvas.width, canvas.height);
+    }
+
+    /**Hidden function that inverts the colors for negative effect **/
+    function invertColors() {
+        var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        // Red, Green, Blue & Alpha
+        var numPixels = imageData.data.length / 4;
+
+        for (var i = 0; i < numPixels; i++) {
+            // Complementary colors
+            imageData.data[i * 4 + 0] = 255 - imageData.data[i * 4 + 0];   //Red
+            imageData.data[i * 4 + 1] = 255 - imageData.data[i * 4 + 1];   //Green
+            imageData.data[i * 4 + 2] = 255 - imageData.data[i * 4 + 2];   //Blue
+        }
+        context.putImageData(imageData, 0, 0);
     }
 
     /** Writes text above canvas **/
@@ -112,7 +127,6 @@ document.addEventListener('DOMContentLoaded', function () {
         drawImage(); // Uses the global image variable
         drawText(top, canvas.width / 2, 50);
         drawText(bottom, canvas.width / 2, 490);
-
     }
 
     // Starter image
