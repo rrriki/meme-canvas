@@ -1,35 +1,33 @@
-/** IMPORTS **/
 const path = require('path');
-const fs = require('fs');
 const express = require('express');
 const multer = require('multer');
 
-/** GLOBAL **/
-var TAG = '[server]';
 // Instatiate express app
-var app = express();
+const app = express();
+const port = 8080;
+const maxFileSize = 10000000; // 10 MB
 
 // storage engine for multer
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: 'uploads/',
     filename: function (req, file, callback) {
-        var ext = path.extname(file.originalname);
-        var filename = path.basename(file.originalname, ext);
+        const ext = path.extname(file.originalname);
+        const filename = path.basename(file.originalname, ext);
         callback(null, filename + '_' + Date.now() + ext);
     }
 });
 
 // Multer uploader settings
-var upload = multer({
+const upload = multer({
     storage: storage,
     fileFilter: function (req, file, callback) {
-        var ext = path.extname(file.originalname).toLowerCase();
+        const ext = path.extname(file.originalname).toLowerCase();
         if (ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg' && ext !== '.gif') {
-            return callback(new Error('Only images are allowed'));
+            return callback(new Error('Only images are allowed!'));
         }
         callback(null, true);
     },
-    limits: { fileSize: 10000000 } // 10 MB
+    limits: { fileSize: maxFileSize }
 }).single('file');
 
 // Serve the public directory
@@ -39,28 +37,29 @@ app.use(express.static('public'));
 app.post('/upload', function (req, res) {
     // store using Multer
     upload(req, res, function (err) {
+        const filePath = path.basename(req.file.path);
+        console.log('POST:', filePath);
         if (err) {
-            console.log(err);
             console.log('Error uploading file');
-            res.sendStatus(500);
+            console.log(err);
+            return res.sendStatus(500);
         }
-        else {
-            console.log('File stored in:', req.file.path);
-            // Return the filename to the client
-            res.status(200).send(path.basename(req.file.path));
-        }
+
+        // Return the filename to the client
+        return res.status(200).send(filePath);
     });
 });
 
 // Route to handle file downloads
 app.get('/:filename', function (req, res) {
-    var filepath = path.join('uploads', req.params.filename);
-    console.log('Received GET request for file:', filepath);
-    res.sendFile(path.resolve(filepath));
+    const { filename } = req.params;
+    const filepath = path.join('uploads', filename);
+    console.log('GET:', filename);
+    return res.sendFile(path.resolve(filepath));
 })
 
 // Start server
-var server = app.listen(8765, function () {
-    console.log(TAG, `listening on port ${server.address().port}`);
+const server = app.listen(port, function () {
+    console.log(`listening on port ${server.address().port}`);
 });
 

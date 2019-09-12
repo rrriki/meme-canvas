@@ -1,19 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     // Reference the canvas context used for drawing.
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
-    var image;
-    var top = "", bottom = "";
-    var filename = 'meme.jpg';
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    let image;
+    let top = "", bottom = "";
+    let filename = 'meme.jpg';
 
     // Prepare DOM
-    var topInput = document.getElementById('top');
+    const topInput = document.getElementById('top');
     topInput.oninput = textWatcher;
-    var bottomInput = document.getElementById('bottom');
+    const bottomInput = document.getElementById('bottom');
     bottomInput.oninput = textWatcher;  
 
-    var form = document.getElementById('form');
+    const form = document.getElementById('form');
     form.addEventListener('submit', function (event) {
         // Don't redirect
         event.preventDefault();
@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
         bottom = '';
     });
 
-    var submitButton = document.getElementById('submit');
+    const submitButton = document.getElementById('submit');
     submitButton.addEventListener('click', function () {
-        var formData = new FormData(document.getElementById("form"));
+        const formData = new FormData(document.getElementById("form"));
         uploadImage(formData, false);
     });
 
-    var downloadLink = document.getElementById('download');
+    const downloadLink = document.getElementById('download');
     downloadLink.addEventListener('click', function () {
         downloadImage(this);
     }, false);
@@ -40,16 +40,17 @@ document.addEventListener('DOMContentLoaded', function () {
     /** Displays the image on the Canvas **/
     function drawImage() {
         console.log('Image loaded');
+        canvas.width = canvas.width
         context.drawImage(image, 0, 0, canvas.width, canvas.height);
     }
 
     /**Hidden function that inverts the colors for negative effect **/
     function invertColors() {
-        var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
         // Red, Green, Blue & Alpha
-        var numPixels = imageData.data.length / 4;
+        const numPixels = imageData.data.length / 4;
 
-        for (var i = 0; i < numPixels; i++) {
+        for (const i = 0; i < numPixels; i++) {
             // Complementary colors
             imageData.data[i * 4 + 0] = 255 - imageData.data[i * 4 + 0];   //Red
             imageData.data[i * 4 + 1] = 255 - imageData.data[i * 4 + 1];   //Green
@@ -73,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function uploadImage(formData, silent) {
         console.log('Uploading image to Server');
         // Create request with the form data
-        var xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
 
         xhr.open('POST', '/upload', true);
         // Response handler
@@ -82,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (silent != true) {
                 filename = event.target.response;
                 getImage(event.target.response);
+                downloadLink.disabled = false;
             }
         };
         // Make request
@@ -102,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
         link.download = filename;
         // Upload a copy to the server
         canvas.toBlob(function (blob) {
-            var formdata = new FormData();
+            const formdata = new FormData();
             formdata.set('file', blob, filename);
             uploadImage(formdata, true);
         })
@@ -110,9 +112,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /** Listens for typing on input boxes **/
     function textWatcher(event) {
-        var id = event.target.id;
-        var text = event.target.value;
-        // Assign the text to the correct variable
+        const id = event.target.id;
+        const text = event.target.value;
+        // Assign the text to the correct constiable
         if (id == "top") {
             top = text;
         } else {
@@ -124,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /** Draws the image and text into meme  **/
     function drawMeme(top, bottom) {
-        drawImage(); // Uses the global image variable
+        drawImage(); // Uses the global image constiable
         drawText(top, canvas.width / 2, 50);
         drawText(bottom, canvas.width / 2, 490);
     }

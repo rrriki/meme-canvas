@@ -16,7 +16,7 @@ Navigate to the page, upload your image and write some funny lines.
 ## Contributing
 Want to contribute? Great!
 
-Ideas and suggestions are always welcome. Contact me through [REVEWARE](http://reveware.com) or make a pull request on [GitHub](https://github.com/rrriki/meme-maker)
+Ideas and suggestions are always welcome. Contact me, or make a pull request on [GitHub](https://github.com/rrriki/meme-maker)
 
 ## License
 - MIT
